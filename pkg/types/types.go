@@ -16,6 +16,14 @@ const (
 	Delete RuleType = "Del"
 	// Rename will rename a header.
 	Rename RuleType = "Rename"
+	// PathEscape will net.url.PathEscape a header value to new or same header.
+	PathEscape RuleType = "PathEscape"
+	// PathUnEscape will net.url.PathUnEscape a header value to new or same header.
+	PathUnescape RuleType = "PathUnescape"
+	// QueryEscape will net.url.QueryEscape a header value to new or same header.
+	QueryEscape RuleType = "QueryEscape"
+	// QueryUnEscape will net.url.QueryUnEscape a header value to new or same header.
+	QueryUnescape RuleType = "QueryUnescape"
 	// RewriteValueRule will replace the value of a header with the provided value.
 	RewriteValueRule RuleType = "RewriteValueRule"
 )

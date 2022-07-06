@@ -9,6 +9,10 @@ import (
 
 	"github.com/tomMoulard/htransformation/pkg/handler/deleter"
 	"github.com/tomMoulard/htransformation/pkg/handler/join"
+	"github.com/tomMoulard/htransformation/pkg/handler/pathescape"
+	"github.com/tomMoulard/htransformation/pkg/handler/pathunescape"
+	"github.com/tomMoulard/htransformation/pkg/handler/queryescape"
+	"github.com/tomMoulard/htransformation/pkg/handler/queryunescape"
 	"github.com/tomMoulard/htransformation/pkg/handler/rename"
 	"github.com/tomMoulard/htransformation/pkg/handler/rewrite"
 	"github.com/tomMoulard/htransformation/pkg/handler/set"
@@ -37,6 +41,10 @@ func CreateConfig() *Config {
 var ruleHandlers = map[types.RuleType]func(http.ResponseWriter, *http.Request, types.Rule){
 	types.Delete:           deleter.Handle,
 	types.Join:             join.Handle,
+	types.PathEscape:       pathescape.Handle,
+	types.PathUnescape:     pathunescape.Handle,
+	types.QueryEscape:      queryescape.Handle,
+	types.QueryUnescape:    queryunescape.Handle,
 	types.Rename:           rename.Handle,
 	types.RewriteValueRule: rewrite.Handle,
 	types.Set:              set.Handle,

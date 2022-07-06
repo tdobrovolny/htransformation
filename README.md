@@ -206,6 +206,45 @@ Foo: X-Test
 # Modified header:
 Foo: Y-Test
 ```
+
+### PathEscape Rule
+
+A PathEscape Rule use Go function PathEscape to transform header value. This function escapes the string so it can be safely placed inside a URL path segment, replacing special characters (including /) with %XX sequences as needed.
+
+It needs 2 arguments
+
+- `Header`, the name of new header with transformed value of the header with name `Value`. If header with `Header` name already exists, it will be replaced.
+- `Value`, the header name whose value you want to transform
+
+### PathUnescape Rule
+
+A PathUnescape Rule use Go function PathUnescape to transform header value. This function does the inverse transformation of PathEscape, converting each 3-byte encoded substring of the form "%AB" into the hex-decoded byte 0xAB. It returns an error if any % is not followed by two hexadecimal digits.
+
+PathUnescape rule is identical to QueryUnescape rule except that it does not unescape '+' to ' ' (space).
+
+It needs 2 arguments
+
+- `Header`, the name of new header with transformed value of the header with name `Value`. If header with `Header` name already exists, it will be replaced.
+- `Value`, the header name whose value you want to transform
+
+### QueryEscape Rule
+
+A QueryEscape Rule use Go function QueryEscape to transform header value. This function escapes the string so it can be safely placed inside a URL query.
+
+It needs 2 arguments
+
+- `Header`, the name of new header with transformed value of the header with name `Value`. If header with `Header` name already exists, it will be replaced.
+- `Value`, the header name whose value you want to transform
+
+### QueryUnescape Rule
+
+A QueryUnescape Rule use Go function QueryUnescape to transform header value. This function does the inverse transformation of QueryEscape, converting each 3-byte encoded substring of the form "%AB" into the hex-decoded byte 0xAB. It returns an error if any % is not followed by two hexadecimal digits. Error message is set as header value.
+
+It needs 2 arguments
+
+- `Header`, the name of new header with transformed value of the header with name `Value`. If header with `Header` name already exists, it will be replaced.
+- `Value`, the header name whose value you want to transform
+
 ### Careful
 
 The rules will be evaluated in the order of definition
